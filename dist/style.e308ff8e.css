@@ -1,0 +1,117 @@
+
+body {
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+}
+* {
+    box-sizing: border-box;
+}
+.container {
+    display: flex;
+    margin: 1vw;
+}
+.aside {
+    width: 30vw; 
+    background: rgb(244, 246, 247);
+    border-radius: 0vw;
+    margin-right: 1vw;
+    text-align: center;    
+}
+.asideDiv {
+    position: relative;
+}
+:focus {
+    outline: none;
+}
+.main {
+    display: flex;
+    flex-flow: wrap;
+    align-items: flex-start;
+    background: gainsboro;
+    min-height: 600px;
+    min-width: 75vw;   
+}
+select {
+    margin-bottom: 10px;
+    border: none;
+}
+input {
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    box-shadow: none;
+    border: none;
+}
+input ~ .focus-border {
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+    width: 0; 
+    height: 2px;
+    background-color: #4caf50; 
+    transition: 0.1s;
+}
+input:focus ~ .focus-border {
+    width: 100%; 
+    transition: 0.1s;
+}
+label {
+    display: block;
+}
+.emptyList {
+    display: block;
+    margin: auto;
+    font-size: 17vw;
+    color: rgb(206, 204, 204);
+}
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.userLi {
+    width: 185px;
+    height: 280px;
+    list-style-type: none;
+    padding: 10px 5px;
+    margin-left: 10px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    background-color: rgb(247, 248, 248);
+    text-align: center;
+}
+
+.userName {
+    font-size: 16px;
+}
+.photo {
+    max-width: 100%;
+    border-radius: 50%;
+}
+@media screen and (min-width: 470px) and (max-width: 630px) {
+    .userLi {
+        width: 46%;
+        
+    }
+}
+@media screen and (min-width: 630px) and (max-width: 790px) {
+    .userLi {
+        width: 31%;
+        
+    }
+}
+@media screen and (min-width: 790px) {
+    .userLi {
+        width: 23%;
+        
+    }
+}
+
+
+/*# sourceMappingURL=/style.e308ff8e.css.map */
