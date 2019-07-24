@@ -293,8 +293,10 @@ var _createHtmlList = require("./src/createHtmlList");
 
 var _sort = require("./src/sort.js");
 
+var usersOnPage = 20;
 var filterForm = document.querySelector('form');
 var resetButton = document.querySelector('.button');
+var main = document.querySelector('.main');
 (0, _fetch.fetchPeople)().then(function (list) {
   return (0, _createHtmlList.createHtmlList)(list);
 }).then(function (html) {
@@ -326,17 +328,57 @@ function reset() {
 ;
 
 function render(usersHtml) {
-  var htmlMain = usersHtml.map(function (e) {
-    return e.textHtml;
-  }).join('');
+  var page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+  var pagesHtml = paginate(usersHtml, usersOnPage);
 
-  if (usersHtml.length === 0) {
-    htmlMain = "<div class=\"emptyList\">Not found</div>";
+  if (pagesHtml.length === 0) {
+    pagesHtml.push("<div class='emptyList'>Not found</div>");
   }
 
-  document.querySelector('.main').innerHTML = htmlMain;
+  main.innerHTML = pagesHtml[page - 1];
+
+  if (pagesHtml.length > 1) {
+    var pages = document.createElement('div');
+    pages.className = 'pages';
+
+    for (var i = 1; i <= pagesHtml.length; i++) {
+      if (Number(page) === i) {
+        pages.innerHTML += "<button class='active' value=".concat(i, ">").concat(i, "</a>");
+      } else {
+        pages.innerHTML += "<button value=".concat(i, ">").concat(i, "</a>");
+      }
+    }
+
+    main.insertAdjacentElement('beforeend', pages);
+    pages.addEventListener('click', function (e) {
+      render(usersHtml, e.target.value);
+    });
+  }
 }
-},{"./src/fetch.js":"src/fetch.js","./src/createHtmlList":"src/createHtmlList.js","./src/sort.js":"src/sort.js"}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+function paginate(array, itemsOnPage) {
+  var sets = {};
+  var set = [];
+  var setCounter = 0;
+
+  for (var i = 0; i < array.length; i++) {
+    set.push(array[i]);
+
+    if ((i + 1) % itemsOnPage === 0 || i + 1 >= array.length) {
+      setCounter++;
+      sets['' + setCounter] = set;
+      set = [];
+    }
+  }
+
+  var pagesHtml = Object.values(sets).map(function (arr) {
+    return arr.map(function (e) {
+      return e.textHtml;
+    }).join('');
+  });
+  return pagesHtml;
+}
+},{"./src/fetch.js":"src/fetch.js","./src/createHtmlList":"src/createHtmlList.js","./src/sort.js":"src/sort.js"}],"../../../AppData/Local/Yarn/Data/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -364,7 +406,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64963" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50511" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -539,5 +581,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
+},{}]},{},["../../../AppData/Local/Yarn/Data/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
 //# sourceMappingURL=/friends%20app.e31bb0bc.js.map
