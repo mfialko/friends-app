@@ -1,5 +1,5 @@
 import { fetchPeople } from './src/fetch.js';
-import { createHtmlList } from './src/createHtmlList';
+import { createHtmlList } from './src/createHtmlList.js';
 import { sort } from './src/sort.js';
 
 let usersOnPage = 20;
